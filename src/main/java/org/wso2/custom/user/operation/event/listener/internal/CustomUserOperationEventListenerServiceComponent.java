@@ -23,6 +23,11 @@ public class CustomUserOperationEventListenerServiceComponent {
         BundleContext bundleContext = context.getBundleContext();
         bundleContext.registerService(UserOperationEventListener.class.getName(), new CustomUserOperationEventListener(), null);
         log.info("CustomUserOperationEventListener bundle activated successfully..");
+        log.info("..................................................................................................");
+        log.info("..................................................................................................");
+        log.info("..................................................................................................");
+        log.info("..................................................................................................");
+
     }
 
     @Deactivate

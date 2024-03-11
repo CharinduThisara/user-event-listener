@@ -7,6 +7,32 @@ Custom User Operation Event Listener
 
 
 From: 'an unknown organization'
+  - DataStax Java driver for Apache Cassandra(R) - core (https://github.com/datastax/java-driver/java-driver-core) com.datastax.oss:java-driver-core:bundle:4.14.0
+    License: Apache 2  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Shaded Guava artifact for use in the DataStax Java driver for Apache Cassandra® (https://github.com/datastax/java-driver-shaded-guava) com.datastax.oss:java-driver-shaded-guava:jar:25.1-jre-graal-sub-1
+    License: Apache 2  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - An implementation of the Apache Cassandra® native protocol (https://github.com/datastax/native-protocol) com.datastax.oss:native-protocol:bundle:1.5.1
+    License: Apache 2  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jffi (http://github.com/jnr/jffi) com.github.jnr:jffi:jar:1.3.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jffi (http://github.com/jnr/jffi) com.github.jnr:jffi:jar:1.3.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jnr-a64asm (http://nexus.sonatype.org/oss-repository-hosting.html/jnr-a64asm) com.github.jnr:jnr-a64asm:jar:1.0.0
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jnr-constants (http://github.com/jnr/jnr-constants) com.github.jnr:jnr-constants:jar:0.10.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jnr-ffi (http://github.com/jnr/jnr-ffi) com.github.jnr:jnr-ffi:jar:2.2.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jnr-posix (http://nexus.sonatype.org/oss-repository-hosting.html/jnr-posix) com.github.jnr:jnr-posix:jar:3.1.5
+    License: Eclipse Public License - v 2.0  (https://www.eclipse.org/legal/epl-2.0/)    License: GNU General Public License Version 2  (http://www.gnu.org/copyleft/gpl.html)    License: GNU Lesser General Public License Version 2.1  (http://www.gnu.org/licenses/lgpl.html)
+  - jnr-x86asm (http://github.com/jnr/jnr-x86asm) com.github.jnr:jnr-x86asm:jar:1.0.2
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+  - SpotBugs Annotations (https://spotbugs.github.io/) com.github.spotbugs:spotbugs-annotations:jar:3.1.12
+    License: GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1  (https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
+  - JCIP Annotations under Apache License (http://stephenc.github.com/jcip-annotations) com.github.stephenc.jcip:jcip-annotations:jar:1.0-1
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - FindBugs-jsr305 (http://findbugs.sourceforge.net/) com.google.code.findbugs:jsr305:jar:3.0.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
   - Gson (https://github.com/google/gson/gson) com.google.code.gson:gson:jar:2.8.5
     License: Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
   - icu4j  com.ibm.icu:icu4j:jar:2.6.1
@@ -23,6 +49,8 @@ From: 'an unknown organization'
 
   - commons.pool.wso2 (http://wso2.org) commons-pool.wso2:commons-pool:bundle:1.5.6.wso2v1
 
+  - Metrics Core (https://metrics.dropwizard.io/metrics-core) io.dropwizard.metrics:metrics-core:bundle:4.1.18
+    License: Apache License 2.0  (https://www.apache.org/licenses/LICENSE-2.0.html)
   - jdom  jdom:jdom:jar:1.0
 
   - JLine (http://jline.sourceforge.net) jline:jline:jar:0.9.94
@@ -81,10 +109,14 @@ From: 'an unknown organization'
 
   - Hamcrest Core (https://github.com/hamcrest/JavaHamcrest/hamcrest-core) org.hamcrest:hamcrest-core:jar:1.3
     License: New BSD License  (http://www.opensource.org/licenses/bsd-license.php)
+  - HdrHistogram (http://hdrhistogram.github.io/HdrHistogram/) org.hdrhistogram:HdrHistogram:bundle:2.1.12
+    License: Public Domain, per Creative Commons CC0  (http://creativecommons.org/publicdomain/zero/1.0/)    License: BSD-2-Clause  (https://opensource.org/licenses/BSD-2-Clause)
   - smack.wso2 (http://wso2.org) org.igniterealtime.smack.wso2:smack:bundle:3.0.4.wso2v1
 
   - smackx.wso2 (http://wso2.org) org.igniterealtime.smack.wso2:smackx:bundle:3.0.4.wso2v1
 
+  - reactive-streams (http://www.reactive-streams.org/) org.reactivestreams:reactive-streams:jar:1.0.3
+    License: CC0  (http://creativecommons.org/publicdomain/zero/1.0/)
   - org.eclipse.osgi.services  org.wso2.eclipse.osgi:org.eclipse.osgi.services:jar:3.5.100.v20160504-1419
 
   - hazelcast.wso2 (http://wso2.org) org.wso2.orbit.com.hazelcast:hazelcast:bundle:3.12.2.wso2v1
@@ -134,9 +166,21 @@ From: 'Codehaus' (http://www.codehaus.org/)
   - Woodstox (http://woodstox.codehaus.org) org.codehaus.woodstox:wstx-asl:jar:3.2.9
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+From: 'com.typesafe' (https://github.com/lightbend/config)
+  - config (https://github.com/lightbend/config) com.typesafe:config:bundle:1.4.1
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0)
+
 From: 'Eclipse Foundation' (http://www.eclipse.org/)
   - OSGi System Bundle (http://www.eclipse.org/platform) org.eclipse.platform:org.eclipse.osgi:jar:3.14.0
     License: Eclipse Public License - v 2.0  (https://www.eclipse.org/legal/epl-2.0/)
+
+From: 'FasterXML' (http://fasterxml.com/)
+  - Jackson-annotations (http://github.com/FasterXML/jackson) com.fasterxml.jackson.core:jackson-annotations:bundle:2.9.8
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Jackson-core (https://github.com/FasterXML/jackson-core) com.fasterxml.jackson.core:jackson-core:bundle:2.9.8
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jackson-databind (http://github.com/FasterXML/jackson) com.fasterxml.jackson.core:jackson-databind:bundle:2.9.9.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 From: 'fasterxml.com' (http://fasterxml.com)
   - Stax2 API (http://wiki.fasterxml.com/WoodstoxStax2) org.codehaus.woodstox:stax2-api:bundle:3.1.4
@@ -170,6 +214,22 @@ From: 'OSGi Alliance' (http://www.osgi.org/)
   - org.osgi:osgi.core (http://www.osgi.org/) org.osgi:osgi.core:jar:6.0.0
     License: Apache License, Version 2.0  (http://opensource.org/licenses/apache2.0.php)
 
+From: 'OW2' (http://www.ow2.org/)
+  - asm (http://asm.ow2.io/) org.ow2.asm:asm:jar:9.1
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+  - asm-analysis (http://asm.ow2.io/) org.ow2.asm:asm-analysis:jar:9.1
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+  - asm-commons (http://asm.ow2.io/) org.ow2.asm:asm-commons:jar:9.1
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+  - asm-tree (http://asm.ow2.io/) org.ow2.asm:asm-tree:jar:9.1
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+  - asm-util (http://asm.ow2.io/) org.ow2.asm:asm-util:jar:9.1
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+
+From: 'QOS.ch' (http://www.qos.ch)
+  - SLF4J API Module (http://www.slf4j.org) org.slf4j:slf4j-api:jar:1.7.26
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+
 From: 'The Apache Software Foundation' (http://www.apache.org)
   - JavaMail 1.4 (http://geronimo.apache.org/maven/specs/geronimo-javamail_1.4_spec/1.6) org.apache.geronimo.specs:geronimo-javamail_1.4_spec:bundle:1.6
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -185,6 +245,20 @@ From: 'The Apache Software Foundation' (http://www.apache.org/)
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
   - Axiom Impl (http://ws.apache.org/axiom/) org.apache.ws.commons.axiom:axiom-impl:bundle:1.2.11
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Netty Project' (https://netty.io/)
+  - Netty/Buffer (https://netty.io/netty-buffer/) io.netty:netty-buffer:jar:4.1.60.Final
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Codec (https://netty.io/netty-codec/) io.netty:netty-codec:jar:4.1.60.Final
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Common (https://netty.io/netty-common/) io.netty:netty-common:jar:4.1.60.Final
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Handler (https://netty.io/netty-handler/) io.netty:netty-handler:jar:4.1.60.Final
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Resolver (https://netty.io/netty-resolver/) io.netty:netty-resolver:jar:4.1.60.Final
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Transport (https://netty.io/netty-transport/) io.netty:netty-transport:jar:4.1.60.Final
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0)
 
 From: 'WSO2' (http://www.wso2.org/)
   - org.wso2.carbon.crypto.api (http://www.wso2.org/crypto-service-parent/components/org.wso2.carbon.crypto.api/) org.wso2.carbon.crypto:org.wso2.carbon.crypto.api:bundle:1.1.9
