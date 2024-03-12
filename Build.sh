@@ -7,4 +7,3 @@ cp target/org.wso2.custom.user.operation.event.listener-1.0-SNAPSHOT.jar ../wso2
 echo 2 | sudo update-alternatives --config java
 
 ../wso2is-7.0.0/bin/wso2server.sh 
-```
