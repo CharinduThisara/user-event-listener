@@ -11,8 +11,10 @@ import org.wso2.carbon.user.core.model.UserClaimSearchEntry;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.cql.PreparedStatement;
+import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 import com.datastax.oss.driver.api.core.uuid.Uuids;
 
+import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +45,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
     public CustomUserOperationEventListener() {
         super();
+        initSchema();
     }
 
     @Override
@@ -130,5 +133,18 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
             System.out.println(item);
         }
     }
+
+    public static void initSchema() {
+        try (CqlSession session = CqlSession.builder()
+                .addContactPoint(new InetSocketAddress(NODE_IP, PORT))
+                .build()) {
+            // Execute schema initialization query
+            session.execute(SimpleStatement.newInstance(INIT_SCHEMA_QUERY));
+            System.out.println("Cassandra schema initialized successfully");
+        } catch (Exception e) {
+            System.err.println("Error initializing Cassandra schema: " + e.getMessage());
+        }
+    }
+
 
 }
