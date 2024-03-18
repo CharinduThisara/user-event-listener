@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ddb6d71d-2384-46f7-b180-5d19778e148d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/wso2/custom/user/operation/event/listener/CustomUserOperationEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/wso2/custom/user/operation/event/listener/CustomUserOperationEventListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/allclasses-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/allclasses-noframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/constant-values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/deprecated-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/index-all.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/index-all.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/CustomUserOperationEventListener.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/CustomUserOperationEventListener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/class-use/CustomUserOperationEventListener.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/class-use/CustomUserOperationEventListener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/CustomUserOperationEventListenerServiceComponent.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/CustomUserOperationEventListenerServiceComponent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/class-use/CustomUserOperationEventListenerServiceComponent.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/class-use/CustomUserOperationEventListenerServiceComponent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/internal/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/org/wso2/custom/user/operation/event/listener/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/overview-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/overview-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/overview-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/apidocs/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/apidocs/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/DEPENDENCIES" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/DEPENDENCIES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/wso2/custom/user/operation/event/listener/CustomUserOperationEventListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/wso2/custom/user/operation/event/listener/CustomUserOperationEventListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-shared-archive-resources/META-INF/DEPENDENCIES" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-shared-archive-resources/META-INF/DEPENDENCIES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/org.wso2.custom.user.operation.event.listener-1.0-SNAPSHOT-javadoc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/org.wso2.custom.user.operation.event.listener-1.0-SNAPSHOT-javadoc.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/org.wso2.custom.user.operation.event.listener-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/org.wso2.custom.user.operation.event.listener-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/DEPENDENCIES" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/META-INF/DEPENDENCIES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/timestamp" beforeDir="false" afterPath="$PROJECT_DIR$/target/timestamp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2dcH3YX5GrMN4wyAtlHWHlwNoox" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_392-corretto-1.8.0_392-4caba194b151-023f9ed7" />
+        <option value="jdk-17.0.9-corretto-17.0.9-f644763e9732-220112af" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ddb6d71d-2384-46f7-b180-5d19778e148d" name="Changes" comment="" />
+      <created>1710300251944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710300251944</updated>
+    </task>
+    <servers />
+  </component>
+</project>
