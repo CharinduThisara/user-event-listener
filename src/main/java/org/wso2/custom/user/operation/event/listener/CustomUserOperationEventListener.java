@@ -5,12 +5,16 @@ import org.wso2.carbon.user.core.UserStoreManager;
 import org.wso2.carbon.user.core.common.*;
     
 import com.datastax.oss.driver.api.core.CqlSession;
-
 import com.datastax.oss.driver.api.core.CqlSessionBuilder;
+import com.datastax.oss.driver.api.core.config.DriverConfigLoader;
+import com.datastax.oss.driver.api.core.cql.PreparedStatement;
 
+import java.io.File;
 import java.net.InetSocketAddress;
-
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -28,15 +32,15 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     private static final String LOCAL_DATACENTER = "datacenter1";
 
 
-    private static final String INSERT_USER_QUERY = "INSERT INTO users (user_id, username, credential, role_list, claims, profile) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_USER_QUERY = "INSERT INTO my_keyspace.users (user_id, username, credential, role_list, claims, profile) VALUES (?, ?, ?, ?, ?, ?)";
 
     String createKeyspaceQuery = "CREATE KEYSPACE IF NOT EXISTS my_keyspace "
             + "WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};";
 
     String createTableQuery = "CREATE TABLE IF NOT EXISTS my_keyspace.users ("
-            + "user_id UUID PRIMARY KEY, "
+            + "user_id TEXT PRIMARY KEY, "
             + "username TEXT, "
-            + "credential BLOB, "
+            + "credential TEXT, "
             + "role_list SET<TEXT>, "
             + "claims MAP<TEXT, TEXT>, "
             + "profile TEXT)";
@@ -44,7 +48,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     public CustomUserOperationEventListener() {
         super();
 
-        // initializeCassandra();
+        initializeCassandra();
     }
 
     public void initializeCassandra(){
@@ -61,10 +65,15 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     }
 
     public void connect(String node, Integer port, String dataCenter) {
+
+        File file = new File("/home/charindut/IS/Code_Bases/custom-user-operation-event-listener/reference.conf");
+        
+        DriverConfigLoader loader = DriverConfigLoader.fromFile(file);
         CqlSessionBuilder builder = CqlSession.builder();
         builder.addContactPoint(new InetSocketAddress(node, port));
         builder.withLocalDatacenter(dataCenter);
-
+        builder.withConfigLoader(loader);
+        
         this.session = builder.build();
 
         System.out.println("Connected to Cassandra");
@@ -77,6 +86,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
         System.out.println("User added successfully");
         System.out.printf("User Name: %s\n", userName);
+        System.out.printf("User Credential: %s\n", credential);
         System.out.printf("User Store Manager: %s\n", userStoreManager);
         System.out.println("User Claims:");
         printMap(claims);
@@ -84,7 +94,27 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
         printArray(roleList);
         System.out.printf("User Profile: %s\n", profile);
         
-        connect(NODE_IP, PORT,LOCAL_DATACENTER);
+        try{
+
+            // Prepare the insert statement
+            PreparedStatement preparedStatement = session.prepare(INSERT_USER_QUERY);
+
+            String userId = claims.get("http://wso2.org/claims/userid");
+            Set<String> roleSet = new HashSet<>(Arrays.asList(roleList));
+            
+            // Execute the insert statement
+            session.execute(preparedStatement.bind(
+                    userId,                // user_id
+                    userName,             // username
+                    credential.toString(),// credential
+                    roleSet,              // role_list
+                    claims,               // claims
+                    profile));            // profile
+        }
+        catch(Exception e){
+            System.out.println("Error: " + e);
+            e.printStackTrace();
+        }
         // try (CqlSession session = CqlSession.builder()
         // .addContactPoint(new InetSocketAddress(NODE_IP, PORT))
         // .withKeyspace(KEYSPACE)
@@ -144,7 +174,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
                 System.out.println("User Store Manager: " + userStoreManager);
                 // connect(NODE_IP, PORT,LOCAL_DATACENTER);
 
-                System.out.println("Connecting to Cassandra...");
+                // System.out.println("Connecting to Cassandra...");
                 // Establishing connection to Cassandra
                 // try (CqlSession session = new CqlSessionBuilder()
                 //         .addContactPoint(new InetSocketAddress(NODE_IP, PORT))
@@ -157,11 +187,11 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
                 //     System.err.println("Error: " + e);
                 // }
 
-                this.session = new CqlSessionBuilder()
-                        .addContactPoint(new InetSocketAddress(NODE_IP, PORT))
-                        .withLocalDatacenter("datacenter1") // Adjust to your local datacenter name
-                        .build();
-                System.out.println("Connected to Cassandra.");
+                // this.session = new CqlSessionBuilder()
+                //         .addContactPoint(new InetSocketAddress(NODE_IP, PORT))
+                //         .withLocalDatacenter("datacenter1") // Adjust to your local datacenter name
+                //         .build();
+                // System.out.println("Connected to Cassandra.");
                     
     
                 
