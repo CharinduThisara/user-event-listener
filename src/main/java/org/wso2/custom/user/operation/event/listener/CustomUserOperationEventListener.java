@@ -9,25 +9,12 @@ import com.datastax.oss.driver.api.core.CqlSessionBuilder;
 import com.datastax.oss.driver.api.core.config.DriverConfigLoader;
 import com.datastax.oss.driver.api.core.cql.PreparedStatement;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
 import java.io.File;
 import java.net.InetSocketAddress;
-import java.security.KeyStore;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.*;
-import java.security.cert.CertificateException;
 
 
 /**
@@ -43,12 +30,6 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     private static final int PORT = 9042;
     private static final String KEYSPACE = "my_keyspace";
     private static final String LOCAL_DATACENTER = "datacenter1";
-
-    private static String cassandraHost;
-    private static int cassandraPort;
-    private static String region;
-    private static String cassandraUsername;
-    private static String cassandraPassword;
 
 
     private static final String INSERT_USER_QUERY = "INSERT INTO my_keyspace.users (user_id, username, credential, role_list, claims, profile) VALUES (?, ?, ?, ?, ?, ?)";
@@ -71,7 +52,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     }
 
     public void initializeCassandra(){
-
+        
         connect(NODE_IP, PORT, LOCAL_DATACENTER);
         System.out.println("Connected to Cassandra");
 
@@ -97,39 +78,6 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
         System.out.println("Connected to Cassandra");
     }
-
-    // public void connectCosmos() {
-
-    //     SSLContext sc = null;
-    //     try{
-
-    //         Dotenv dotenv = Dotenv.configure().load();
-    //         cassandraHost = dotenv.get("COSMOSDB_HOST");
-    //         cassandraPort = Integer.parseInt(dotenv.get("COSMOSDB_PORT"));
-    //         region = dotenv.get("COSMOSDB_REGION");
-    //         cassandraUsername = dotenv.get("COSMOSDB_USERNAME");
-    //         cassandraPassword = dotenv.get("COSMOSDB_PASSWORD");
-
-    //         final KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-    //         kmf.init(null, null);
-
-    //         final TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-    //         tmf.init((KeyStore) null);
-
-    //         sc = SSLContext.getInstance("TLSv1.2");
-    //         sc.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
-    //         this.session = CqlSession.builder().withSslContext(sc)
-    //         .addContactPoint(new InetSocketAddress(cassandraHost, cassandraPort)).withLocalDatacenter(region)
-    //         .withAuthCredentials(cassandraUsername, cassandraPassword).build();
-    //     }
-    //     catch (Exception e) {
-    //         System.out.println("Error creating session");
-    //         e.printStackTrace();
-    //     }
-
-    //     return;
-    
-    // }
 
 
 

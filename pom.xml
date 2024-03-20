@@ -102,7 +102,8 @@
                             org.apache.axiom.*; version="${axiom.osgi.version.range}",
                             org.osgi.framework; version="${import.osgi.framework.version.range}",
                             org.osgi.service.component; version="${import.osgi.service.component.version.range}"
-                            com.datastax.oss.*;version="4.1.0"
+                            com.datastax.oss.*;version="4.5.1",
+                            io.github.cdimascio.*;version="2.2.0"
                         </Import-Package>
                         <Export-Package>!org.wso2.custom.user.operation.event.listener.internal,
                             org.wso2.custom.user.operation.event.listener.*
