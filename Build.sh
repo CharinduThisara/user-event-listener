@@ -94,8 +94,7 @@ perform_user_creation() {
     create_user
 }
 
-echo 3 | sudo update-alternatives --config java
-JAVA_HOME=`/usr/lib/jvm/java-1.8.0-openjdk-amd64` mvn clean install
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install
 
 rm -rf ../wso2is-7.0.0
 unzip ../wso2is-7.0.0 -d ../
@@ -104,10 +103,10 @@ cp target/org.wso2.custom.user.operation.event.listener-1.0-SNAPSHOT.jar ../wso2
 cp -r lib/* ../wso2is-7.0.0/repository/components/lib
 rm -rf ../wso2is-7.0.0/repository/conf/deployment.toml
 cp deployment.toml ../wso2is-7.0.0/repository/conf
-
-echo 2 | sudo update-alternatives --config java
+cp .env ../wso2is-7.0.0
 
 perform_user_creation &
 
-../wso2is-7.0.0/bin/wso2server.sh
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+../wso2is-7.0.0/bin/wso2server.sh 
 
