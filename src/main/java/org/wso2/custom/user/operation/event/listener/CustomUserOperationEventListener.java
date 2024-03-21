@@ -32,68 +32,49 @@ import java.util.Arrays;
  */
 public class CustomUserOperationEventListener extends AbstractUserOperationEventListener {
 
+    private static final String COSMOS_CONFIG_PATH = "/home/charindut/IS/Code_Bases/custom-user-operation-event-listener/reference.conf";
+    private static final String DEFAULT_KEYSPACE = "my_keyspace";
+    private static final String DEFAULT_DATA_CENTER = "datacenter1";
+    private static final String DEFAULT_TABLE = "my_table";
+    private static final String DEFAULT_NODE = "127.0.0.1";
+    private static final int DEFAULT_PORT = 9042;
+
     private String systemUserPrefix = "system_";
     private CqlSession session;
-    private static final String NODE_IP = "127.0.0.1";
-    private static final int PORT = 9042;
-    private static final String KEYSPACE = "my_keyspace";
-    private static final String LOCAL_DATACENTER = "datacenter1";
-    private static final String INSERT_USER_QUERY = "INSERT INTO my_keyspace.users (user_id, username, credential, role_list, claims, profile) VALUES (?, ?, ?, ?, ?, ?)";
+    private String cassandraKeyspace;
+    private String cassandraTable;   
     
-    private static String createKeyspaceQuery = "CREATE KEYSPACE IF NOT EXISTS my_keyspace " + "WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};";
-    
-    private static String createTableQuery = "CREATE TABLE IF NOT EXISTS my_keyspace.users ("
-    + "user_id TEXT PRIMARY KEY, "
-    + "username TEXT, "
-    + "credential TEXT, "
-    + "role_list SET<TEXT>, "
-    + "claims MAP<TEXT, TEXT>, "
-    + "profile TEXT)";
-    
-    private static String cassandraHost;
-    private static int cassandraPort;
-    private static String region;
-    private static String cassandraUsername;
-    private static String cassandraPassword;
         
     public CustomUserOperationEventListener() {
         super();
+
         initializeCassandra();
     }
-    public void connect(String node, Integer port, String dataCenter) {
+    public void connectToLocalCassandra() {
         
-        File file = new File("/home/charindut/IS/Code_Bases/custom-user-operation-event-listener/reference.conf");
-        
+        File file = new File(COSMOS_CONFIG_PATH);
+
         DriverConfigLoader loader = DriverConfigLoader.fromFile(file);
         CqlSessionBuilder builder = CqlSession.builder();
-        builder.addContactPoint(new InetSocketAddress(node, port));
-        builder.withLocalDatacenter(dataCenter);
+        builder.addContactPoint(new InetSocketAddress(DEFAULT_NODE, DEFAULT_PORT));
+        builder.withLocalDatacenter(DEFAULT_DATA_CENTER);
         builder.withConfigLoader(loader);
         
         this.session = builder.build();
 
-        System.out.println("Connected to Cassandra");
+        System.out.println("Session Created : " + session.getName());
     }
 
     public void initializeCassandra(){
-
-        Dotenv dotenv = Dotenv.configure().load();
-
-        cassandraHost = dotenv.get("COSMOS_CONTACT_POINT");
-        cassandraPort = Integer.parseInt(dotenv.get("COSMOS_PORT"));
-        region = dotenv.get("COSMOS_REGION");   
-        cassandraUsername = dotenv.get("COSMOS_USER_NAME");
-        cassandraPassword = dotenv.get("COSMOS_PASSWORD");  
         
         connectCosmos();
-        System.out.println("Connected to Cosmos DB");
+        System.out.println("Connected to Cosmos");
 
-        // session.execute(createKeyspaceQuery);
-        // System.out.println("Keyspace created");
-      
-        // session.execute(createTableQuery);
-        // System.out.println("Table created");
-        
+        createKeySpace();
+        System.out.println("Keyspace Created");
+
+        createTable();
+        System.out.println("Table Created");
     }
     
     public void connectCosmos() {
@@ -110,14 +91,23 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
             sc = SSLContext.getInstance("TLSv1.2");
             sc.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
 
-            File file = new File("/home/charindut/IS/Code_Bases/custom-user-operation-event-listener/reference.conf");
+            Dotenv dotenv = Dotenv.configure().load();
+
+            String cassandraHost = dotenv.get("COSMOS_CONTACT_POINT");
+            int cassandraPort = Integer.parseInt(dotenv.get("COSMOS_PORT"));
+            String region = dotenv.get("COSMOS_REGION");
+            String cassandraUsername = dotenv.get("COSMOS_USER_NAME");
+            String cassandraPassword = dotenv.get("COSMOS_PASSWORD");
+            cassandraKeyspace = dotenv.get("COSMOS_KEYSPACE");
+            cassandraTable = dotenv.get("COSMOS_TABLE");
         
-            DriverConfigLoader loader = DriverConfigLoader.fromFile(file);
+            DriverConfigLoader loader = DriverConfigLoader.fromFile(new File(COSMOS_CONFIG_PATH));
 
             this.session = CqlSession.builder().withSslContext(sc)
             .addContactPoint(new InetSocketAddress(cassandraHost, cassandraPort)).withLocalDatacenter(region)
             .withConfigLoader(loader)   
             .withAuthCredentials(cassandraUsername, cassandraPassword).build();
+            
         }
         catch (Exception e) {
             System.out.println("Error creating session");
@@ -133,6 +123,28 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     @Override
     public int getExecutionOrderId() {
         return 9000;
+    }
+
+    private void createTable(){
+        String createTableQuery = "CREATE TABLE IF NOT EXISTS "+cassandraKeyspace+"."+cassandraTable+" ("
+                                            + "user_id TEXT PRIMARY KEY, "
+                                            + "username TEXT, "
+                                            + "credential TEXT, "
+                                            + "role_list SET<TEXT>, "
+                                            + "claims MAP<TEXT, TEXT>,"
+                                            + "central_us BOOLEAN, "
+                                            + "east_us BOOLEAN";
+
+        session.execute(createTableQuery);
+  
+    }
+
+    private void createKeySpace(){
+        String createKeyspaceQuery = "CREATE KEYSPACE IF NOT EXISTS "+cassandraKeyspace+ " "  
+                                         + "WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 2};" ;
+    
+        session.execute(createKeyspaceQuery);
+           
     }
 
     @Override
@@ -170,6 +182,9 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
         System.out.println("User Roles:");
         printArray(roleList);
         System.out.printf("User Profile: %s\n", profile);
+
+        final String INSERT_USER_QUERY = "INSERT INTO "+ cassandraKeyspace +"."+cassandraTable+" (user_id, username, credential, role_list, claims, profile,central_us, east_us) VALUES (?, ?, ?, ?, ?, ?)";
+
         
         try{
 
@@ -186,7 +201,10 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
                     credential.toString(),// credential
                     roleSet,              // role_list
                     claims,               // claims
-                    profile));            // profile
+                    profile,
+                    false,
+                    true
+                    ));            // profile
         }
         catch(Exception e){
             System.out.println("Error: " + e);
