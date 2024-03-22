@@ -99,10 +99,13 @@ JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install
 rm -rf ../wso2is-7.0.0
 unzip ../wso2is-7.0.0 -d ../
 cp target/org.wso2.custom.user.operation.event.listener-1.0-SNAPSHOT.jar ../wso2is-7.0.0/repository/components/dropins
+cp dropins/* ../wso2is-7.0.0/repository/components/dropins
 
 cp -r lib/* ../wso2is-7.0.0/repository/components/lib
 rm -rf ../wso2is-7.0.0/repository/conf/deployment.toml
 cp deployment.toml ../wso2is-7.0.0/repository/conf
+cp reference.conf ../wso2is-7.0.0/repository/conf
+
 cp .env ../wso2is-7.0.0
 
 perform_user_creation &

@@ -32,13 +32,13 @@ import java.util.Arrays;
  */
 public class CustomUserOperationEventListener extends AbstractUserOperationEventListener {
 
-    private static final String COSMOS_CONFIG_PATH = "/home/charindut/IS/Code_Bases/custom-user-operation-event-listener/reference.conf";
     private static final String DEFAULT_KEYSPACE = "my_keyspace";
     private static final String DEFAULT_DATA_CENTER = "datacenter1";
     private static final String DEFAULT_TABLE = "my_table";
     private static final String DEFAULT_NODE = "127.0.0.1";
     private static final int DEFAULT_PORT = 9042;
-
+    
+    private static String COSMOS_CONFIG_PATH;
     private String systemUserPrefix = "system_";
     private CqlSession session;
     private String cassandraKeyspace;
@@ -94,6 +94,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
             Dotenv dotenv = Dotenv.configure().load();
 
+            COSMOS_CONFIG_PATH = dotenv.get("COSMOS_CONFIG_PATH");
             String cassandraHost = dotenv.get("COSMOS_CONTACT_POINT");
             int cassandraPort = Integer.parseInt(dotenv.get("COSMOS_PORT"));
             String region = dotenv.get("COSMOS_REGION");
