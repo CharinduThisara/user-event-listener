@@ -15,6 +15,7 @@ import com.datastax.oss.driver.api.core.CqlSessionBuilder;
 import com.datastax.oss.driver.api.core.config.DriverConfigLoader;
 import com.datastax.oss.driver.api.core.cql.PreparedStatement;
 
+import groovy.transform.builder.InitializerStrategy.SET;
 
 import java.net.InetSocketAddress;
 
@@ -131,15 +132,15 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
     private void createTable(){
         String createTableQuery = "CREATE TABLE IF NOT EXISTS " + cassandraKeyspace + "." + cassandraTable + " ("
-                                + "user_id TEXT PRIMARY KEY, "
+                                + "central_us BOOLEAN, "
+                                + "east_us BOOLEAN, "
+                                + "user_id TEXT, "
                                 + "username TEXT, "
                                 + "credential TEXT, "
                                 + "role_list SET<TEXT>, "
                                 + "claims MAP<TEXT, TEXT>,"
                                 + "profile TEXT, "
-                                + "central_us BOOLEAN, "
-                                + "east_us BOOLEAN)";
-
+                                + "PRIMARY KEY ((central_us, east_us), user_id))";
 
         session.execute(createTableQuery);
   
