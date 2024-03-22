@@ -50,6 +50,19 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
         initializeCassandra();
     }
+
+    public void initializeCassandra(){
+        
+        connectCosmos();
+        System.out.println("Connected to Cosmos");
+
+        createKeySpace();
+        System.out.println("Keyspace Created");
+
+        createTable();
+        System.out.println("Table Created");
+    }
+
     public void connectToLocalCassandra() {
         
         File file = new File(COSMOS_CONFIG_PATH);
@@ -63,18 +76,6 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
         this.session = builder.build();
 
         System.out.println("Session Created : " + session.getName());
-    }
-
-    public void initializeCassandra(){
-        
-        connectCosmos();
-        System.out.println("Connected to Cosmos");
-
-        createKeySpace();
-        System.out.println("Keyspace Created");
-
-        createTable();
-        System.out.println("Table Created");
     }
     
     public void connectCosmos() {
@@ -103,6 +104,8 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
         
             DriverConfigLoader loader = DriverConfigLoader.fromFile(new File(COSMOS_CONFIG_PATH));
 
+            System.out.println("Connecting to Cosmos "+cassandraHost+":"+cassandraPort+" with keyspace: "+cassandraKeyspace+" and table: "+cassandraTable);
+
             this.session = CqlSession.builder().withSslContext(sc)
             .addContactPoint(new InetSocketAddress(cassandraHost, cassandraPort)).withLocalDatacenter(region)
             .withConfigLoader(loader)   
@@ -116,8 +119,8 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
     }
 
-    public static void close(CqlSession session) {
-        session.close();
+    private void close() {
+        this.session.close();
     }
 
     @Override
@@ -126,14 +129,16 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     }
 
     private void createTable(){
-        String createTableQuery = "CREATE TABLE IF NOT EXISTS "+cassandraKeyspace+"."+cassandraTable+" ("
-                                            + "user_id TEXT PRIMARY KEY, "
-                                            + "username TEXT, "
-                                            + "credential TEXT, "
-                                            + "role_list SET<TEXT>, "
-                                            + "claims MAP<TEXT, TEXT>,"
-                                            + "central_us BOOLEAN, "
-                                            + "east_us BOOLEAN";
+        String createTableQuery = "CREATE TABLE IF NOT EXISTS " + cassandraKeyspace + "." + cassandraTable + " ("
+                                + "user_id TEXT PRIMARY KEY, "
+                                + "username TEXT, "
+                                + "credential TEXT, "
+                                + "role_list SET<TEXT>, "
+                                + "claims MAP<TEXT, TEXT>,"
+                                + "profile TEXT, "
+                                + "central_us BOOLEAN, "
+                                + "east_us BOOLEAN)";
+
 
         session.execute(createTableQuery);
   
@@ -141,7 +146,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
 
     private void createKeySpace(){
         String createKeyspaceQuery = "CREATE KEYSPACE IF NOT EXISTS "+cassandraKeyspace+ " "  
-                                         + "WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 2};" ;
+                                         + "WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};" ;
     
         session.execute(createKeyspaceQuery);
            
@@ -183,7 +188,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
         printArray(roleList);
         System.out.printf("User Profile: %s\n", profile);
 
-        final String INSERT_USER_QUERY = "INSERT INTO "+ cassandraKeyspace +"."+cassandraTable+" (user_id, username, credential, role_list, claims, profile,central_us, east_us) VALUES (?, ?, ?, ?, ?, ?)";
+        final String INSERT_USER_QUERY = "INSERT INTO "+ cassandraKeyspace +"."+cassandraTable+" (user_id, username, credential, role_list, claims, profile, central_us, east_us) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         
         try{
@@ -205,6 +210,7 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
                     false,
                     true
                     ));            // profile
+
         }
         catch(Exception e){
             System.out.println("Error: " + e);
